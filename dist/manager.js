@@ -2,6 +2,7 @@ class Manager {
     constructor() {}
 
     saveUser = async (userData) => {
+        const userName = $(`#name`).val()
         await $.post(`/user/${userName}`, userData)
     }
 
