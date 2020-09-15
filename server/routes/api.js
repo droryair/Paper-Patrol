@@ -1,7 +1,11 @@
 const express = require('express')
 const axios = require('axios')
+// const Parser = require('body-parser')
 const Market = require('../model/Market')
 const User = require('../model/User')
+const Module = require('../../parse-module')
+
+// const Parser = require('Module')
 
 const router = express.Router()
 
@@ -79,6 +83,19 @@ router.post('/user/:userName',function(req,res){
     })
 })
 
+router.post('/parser', function (req, res) {
+    const path = req.body
+    // console.log("path!",path)
+    // Module.func(path)
+    // console.log(Module)
+
+    // const path = 'C:\Users\97252\OneDrive\שולחן העבודה'
+    const result = Module.Module(path.path)
+        // console.log(result)
+        res.send(result)
+    
+    // res.send(Module)
+})
 
 
 
