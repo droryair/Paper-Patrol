@@ -8,7 +8,6 @@ const router = express.Router()
 
 router.get('/insurence', function (req, res) {
     const insurenceApi = `https://data.gov.il/api/3/action/datastore_search?resource_id=6d47d6b5-cb08-488b-b333-f1e717b1e1bd`
-    console.log(insurenceApi)
 
     const calcAvg = function(arr){
         let sum = 0
@@ -29,20 +28,19 @@ router.get('/insurence', function (req, res) {
                 monthArr.push(i.AVG_DEPOSIT_FEE)
                 savesArr.push(i.AVG_ANNUAL_MANAGEMENT_FEE)
             })
-        // const avgResults = calcAvg(yieldArr,monthArr,saveArr)
-        const avgYield = calcAvg(yieldArr)
-        const avgMonthFee = calcAvg(monthArr)
-        const avgSavesFee = calcAvg(savesArr)
+            // const avgResults = calcAvg(yieldArr,monthArr,saveArr)
+            const avgYield = calcAvg(yieldArr)
+            const avgMonthFee = calcAvg(monthArr)
+            const avgSavesFee = calcAvg(savesArr)
 
-        const m = new Market({
-            avgMonthFee,
-            avgSavesFee,
-            avgYield,
-            lastUpdate
+            const m = new Market({
+                avgMonthFee,
+                avgSavesFee,
+                avgYield,
+            })
+            //Market.save(m)
+            res.send(m)
         })
-        //Market.save(m)
-        res.send(m)
-    })
     .catch(err=>{
         res.send(err)
     })
