@@ -1,13 +1,13 @@
 {
   "name": "paper-patrol",
   "version": "1.0.0",
-  "description": "",
   "main": "parse-modole.js",
   "dependencies": {
     "axios": "^0.20.0",
     "body-parser": "^1.19.0",
     "docparser-node": "^1.2.2",
     "express": "^4.17.1",
+    "express-fileupload": "^1.2.0",
     "handlebars": "^4.7.6",
     "jquery": "^3.5.1",
     "moment": "^2.28.0",
@@ -28,5 +28,6 @@
   "bugs": {
     "url": "https://github.com/droryair/Paper-Patrol/issues"
   },
-  "homepage": "https://github.com/droryair/Paper-Patrol#readme"
+  "homepage": "https://github.com/droryair/Paper-Patrol#readme",
+  "description": ""
 }
