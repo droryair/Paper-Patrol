@@ -1,5 +1,4 @@
 
-
 const getData = function(){
     const userObject = {}
 
@@ -13,7 +12,7 @@ const getData = function(){
 
     manager.saveUser(userObject)
     .then(manager.getResults())
-    
+
     return false
 }
 

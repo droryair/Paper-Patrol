@@ -8,11 +8,27 @@ const Module = require('../../parse-module')
 // const Parser = require('Module')
 
 const router = express.Router()
+router.get(`/`, (req,res) => {
+        res.sendFile(__dirname + `/index.html`)
+})
 
+router.post('/', (req,res) => {
+    if(req.files) {
+        const filename = req.files
+        // file.mv('./uploads'+filename, function(err){
+        //     if(err){
+        //         res.send(err)
+        //     }else{
+        //         res.send(`${filename} uploaded`)
+        //     }
+        // })
+        console.log(filename)
+    }
+})
 
 router.get('/insurence', function (req, res) {
     const insurenceApi = `https://data.gov.il/api/3/action/datastore_search?resource_id=6d47d6b5-cb08-488b-b333-f1e717b1e1bd`
-
+    
     const calcAvg = function(arr){
         let sum = 0
         arr.forEach(num=>sum+=Number(num))
@@ -57,8 +73,8 @@ router.post('/user/:userName',function(req,res){
         if (result) {
             res.send("This user already exists")
         } else {
-            // const age = user.age,
-            // const password = user.password,
+            const age = user.age
+            const password = user.password
             // const pensionCompany = user.pensionCompany,
             // const maritalStatus = user.maritalStatus,
             // const monthFee = user.monthFee,
@@ -69,18 +85,19 @@ router.post('/user/:userName',function(req,res){
                 name,
                 age,
                 password,
-                pensionCompany,
-                maritalStatus,
-                fullDisclosure:{monthFee,savesFee,yield,dangerLvl}
+                // pensionCompany,
+                // maritalStatus,
+                // fullDisclosure:{monthFee,savesFee,yield,dangerLvl}
                 // monthFee,
                 // savesFee,
                 // yield,
                 // dangerLvl
             })
                 // u.save()
-                res.send("Wowee! new user!")
-        }
-    })
+                console.log(u)
+            }
+        })
+        res.send("Wowee! new user!")
 })
 
 router.post('/parser', function (req, res) {
