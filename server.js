@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
+const axios = require('axios')
 const mongoose = require('mongoose')
 const api = require('./server/routes/api')
 // const Module = require('./parse-module')
@@ -9,6 +10,7 @@ const fileUpload =require(`express-fileupload`)
 const Market = require('./server/model/Market')
 const User = require('./server/model/User')
 const Parse = require('./parse-module')
+const { lookupService } = require('dns')
 
 
 
@@ -32,7 +34,26 @@ app.listen(port,function(){
 })
 
 
-
+app.get('/userInfo',function(req,res){
+    // const id = req.query.id
+    
+    // let userPromise = User.findById({id})
+    // userPromise.then(function(user){
+    //     res.render("userInfo.ejs",{
+    //         name: user.name,
+    //         age: user.age,
+    //         maritalStatus: user.maritalStatus
+    //     })
+    // })
+    // .catch(err=>{
+    //     res.send(err)
+    // })
+    res.render('userInfo.ejs', {
+        name: "losssi",
+        age: 33,
+        maritalStatus: "fffff"
+    })
+})
 
 
 app.get('/insurence', function (req, res) {
@@ -71,29 +92,30 @@ app.get('/insurence', function (req, res) {
             res.send(m)
         })
     .catch(err=>{
-        res.send(err)
+        res.send("@@@@@error1@@@@@@@", err)
     })
 })
 
 app.post('/user', function (req, res) {
     const user = req.body
     const file = req.files.fullDisclosure
-    console.log(file)
+    // console.log(file)
     
     
     const name = user.name
     const age = user.age
     const maritalStatus = user.maritalStatus
-    file.mv("uploads/" + file.name, function (err) {
+    const path = `./${file.name}`
+    let fullDisclosure
+    file.mv("./" + file.name, function (err) {
         if (err) {
-            console.log(err)
+            console.log("@@@@@eroorrrr2@@@@@@@@",err)
         } else {
             console.log("file uploaded")
+            fullDisclosure = Parse.Module(path)
         }
     })
-    const path = require(`./Uploads/${file.name}`)
-    const fullDisclosure = Parse.Module(path.path)
-
+         
     // const pensionCompany = user.pensionCompany
     // const password = user.password
     const u = new User({
@@ -105,15 +127,11 @@ app.post('/user', function (req, res) {
         // password,
     })
     u.save()
-    console.log(u)
-    res.redirect("/userInfo")
+    res.redirect('/userInfo')
+    res.end()
 })
 
 
-app.get('/userInfo',function(req,res){
-
-    res.render("userInfo.ejs")
-})
 
 
 
