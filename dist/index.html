@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <form>
+    <form enctype="multipart/form-data">
         <div class="form-group">
             <label for="name">Name:</label>
             <input id="name" class="form-control" placeholder="Enter name">
@@ -38,13 +38,26 @@
             <input class="form-control" id="status">
         </div>
         
+        <!-- <div class="custom-file">
+            <label>File Upload</label> 
+            <input type="text" class="form-control" placeholder="Choose file" name="fullDisclosure">
+        </div> -->
+        <h3>Upload Your Files</h3>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+            </div>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="importFile" aria-describedby="inputGroupFileAddon01" name="fullDisclosure">
+              <label class="custom-file-label" for="importFile">Full Disclosure File(.pdf)</label>
+            </div>
+          </div>
         <button type="submit" class="btn btn-primary" onclick="return getData()">Submit</button>
+          
     </form>
 
-    <form method="POST" action="/" enctype="multipart/form-data" >
-        <input id="file" type="file" name="file">
-        <input type="submit" value="Upload">
-    </form>
+    
+
 
     <!-- <script src="./jquery/dist/jquery.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>

@@ -4,10 +4,11 @@ const axios = require('axios')
 const Market = require('../model/Market')
 const User = require('../model/User')
 const Module = require('../../parse-module')
+const fileUpload =require(`express-fileupload`)
 
 // const Parser = require('Module')
-
 const router = express.Router()
+router.use(fileUpload())
 router.get(`/`, (req,res) => {
         res.sendFile(__dirname + `/index.html`)
 })
@@ -67,8 +68,20 @@ router.get('/insurence', function (req, res) {
 })
 
 router.post('/user/:userName',function(req,res){
+    console.log("hello")
+    console.log(req.files.fullDisclosure)
     const user = req.body
+    const fullDisclosure = req.files
+    fullDisclosure.mv("../../uploads/" + fullDisclosure.name, function(err){
+        if(err){
+            console.log(err)
+        } else{
+            console.log("File uploaded")
+        }
+    })
+    
     const name = user.name
+
     User.exists({ name }, function (err, result) {
         if (result) {
             res.send("This user already exists")
