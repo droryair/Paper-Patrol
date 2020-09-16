@@ -2,11 +2,21 @@ const express = require('express')
 const axios = require('axios')
 const Market = require('../model/Market')
 const User = require('../model/User')
+const Results = require('../model/Results')
 const fs = require('fs')
+const DefaultPension = require('../Class/DefaultPension')
 
 router = express.Router()
+    
 
 
+
+router.get('/getUser',function(req,res){
+    const id = req.query.id
+    User.findById({_id:id},function(err,user){
+        res.send(user)
+    })
+})
 
 router.get('/insurence', function (req, res) {
     const insurenceApi = `https://data.gov.il/api/3/action/datastore_search?resource_id=6d47d6b5-cb08-488b-b333-f1e717b1e1bd`
@@ -39,7 +49,7 @@ router.get('/insurence', function (req, res) {
                 avgSavesFee,
                 avgYield,
             })
-            Market.save(m)
+            m.save()
             console.log("I LIVE")
             res.send(m)
             
@@ -55,7 +65,8 @@ router.get('/userInfo',function(req,res){
         res.render('userInfo.ejs', {
             name: user.name,
             age: user.age,
-            maritalStatus: user.maritalStatus
+            maritalStatus: user.maritalStatus,
+            id
         })
     }).catch(err=>{
         console.log(err)
@@ -103,5 +114,59 @@ router.post('/user', function (req, res) {
     res.end()
 })
 
+
+router.get('/results/:id', function (req, res){
+    const userID = req.params.id
+    let userAge 
+    let userOffer
+    // const defaultPensionYoung = new DefaultPension ("AltshulerShaham", 1.49, 0.1)
+    // const defaultPensionOld = new DefaultPension ("MeitavDash", 2.49, 0.05)
+    const defaultPensionYoung ={name:"AltshulerShaham",monthFee:1.49,savesFee:0.1}
+    const defaultPensionOld ={name:"MeitavDash",monthFee:2.49,savesFee:0.05}
+    User.findById({userID}).then(u=> {
+        userAge = u.age
+        userOffer = u.fullDisclosure
+        if((userAge<45)&&(defaultPensionYoung.monthFee<userOffer.monthFee)){
+            res.send(`your Better offer is:${defaultPensionYoung}`)
+        }else if((userAge>45)&&(defaultPensionOld.savesFee<userOffer.savesFee)){
+            res.send(`your Better offer is:${defaultPensionOld}`)
+        }else {
+            res.send(`your offer is good enough. congratulations!`)
+        }
+    })
+    .catch(err=>{
+        res.send(err)
+    })
+
+    router.post('/finalPage',function(req,res){
+        const result = req.body.resultArray
+        console.log(result)
+        const r = new Results({
+            userPension: result[0],
+            benchmark: result[1],
+            bestOffer: result[2]
+        })
+        r.save()
+        res.redirect(`/userResult/?id=${r._id}`)
+    })
+    
+    router.get('/userResult', function (req, res) {
+        const id = req.query.id
+        Results.findById({ _id: id })
+        .then(result => {
+            console.log("resultsssss:", result)
+            res.render('finalPage.ejs', {
+                results: result
+            })
+        }).catch(err => {
+            console.log(err)
+        })
+    })
+
+
+
+
+
+})
 
 module.exports = router

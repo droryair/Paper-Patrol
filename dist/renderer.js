@@ -1,28 +1,46 @@
-class Renderer {
+// // const Manager = require('./manager')
 
-    renderMarket(market) {
-        $("#bench-market").empty()
-        const source = $('#template-market').html();
-        const template = Handlebars.compile(source)
-        const newHTML = template(market)
-        $('#results').append(newHTML)
-    }
+// const Renderer = function () {
+//     // In-Module Methods
+//     const renderBenchMark = function(benchMark){
+//         const source = $("#bench-mark-template").html()
+//         const template = Handlebars.compile(source)
+//         const newHTML = template(benchMark)
+//         console.log(benchMark)
+//         $('#bench-mark-container').append(newHTML)
+//     }
+//     // const renderUserpension = function(userPension) {
+//     //     const source = $("#user-pension-template").html()
+//     //     const template = Handlebars.compile(source)
+//     //     const newHTML = template(userPension)
+//     //     $('#user-pension-container').append(newHTML)
 
-    renderUserResults(user) {
-        $("#user-results").empty()
-        const source = $('#template-user').html();
-        const template = Handlebars.compile(source)
-        const newHTML = template(user.fullDisclosure)
-        $('#results').append(newHTML)
-    }
+//     // }
+//     // const renderBestOffer = function(bestOffer) {
+//     //     console.log("renderBestOffer")
+//     //     const source = $("#best-offer-template").html()
+//     //     const template = Handlebars.compile(source)
+//     //     const newHTML = template(bestOffer)
+//     //     $('#best-offer-container').append(newHTML)
+//     // }
 
-    renderBestOffers(offers) {
-        $("#best-offers").empty()
-        const source = $('#template-offers').html();
-        const template = Handlebars.compile(source)
-        const newHTML = template({offers})
-        $('#results').append(newHTML)
-    }
-}
+//     // Export Methods
+//     const renderData = function(resultsArray) {
+//         $("#results-container").empty() 
+//         $("#user-info").empty()
+//         benchMark = resultsArray[0]
+//         userPension = resultsArray[1]
+//         bestOffer = resultsArray[2]
+//         renderBenchMark(benchMark)
+//         // renderUserpension(userPension)
+//         // renderBestOffer(bestOffer)
+//     }
 
-let renderer = new Renderer()
+//     return {
+//         renderData
+//     }
+// }
+
+// // let renderer = new Renderer()
+
+// const renderer = Renderer()

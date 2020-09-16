@@ -1,20 +1,21 @@
-class Manager {
-    constructor() {}
 
-
-    saveUser = async (userData) => {
-        const userName = $(`#name`).val()
-        await $.post(`/user/${userName}`, userData, (user => {
-            renderer.renderUserResults(user)
-        }))
+class ResultManager {
+    constructor() {
+        this.result = []
     }
+    async getResultData(id) {
 
-    getResults = async () => {
-        await $.get(`/insurence`, (market => {
-            renderer.renderMarket(market)
-        }))
+        const user = await $.get(`/getUser/?id=${id}`)
+        const i = await $.get(`/insurence`)
+        const r = await $.get(`/results/${id}`)
+
+        // this.result.push(user.fullDisclosure)
+        this.result.push({monthFee:1,savesFee:1,dangerLvl:"low"})
+        this.result.push(i)
+        this.result.push(r)
+
+        return this.result
     }
 }
 
-const manager = new Manager
-
+const manager = new ResultManager()
