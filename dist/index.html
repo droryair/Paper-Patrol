@@ -6,20 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <!-- <link rel="icon" href="favicon.ico"> -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Merriweather&family=Sacramento&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Merriweather&family=Sacramento&display=swap" rel="stylesheet">
 
     <title>Paper-Patrol</title>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 
 <body>
-    <form enctype="multipart/form-data">
+    <form enctype="multipart/form-data" method="POST">
         <div class="form-group">
             <label for="name">Name:</label>
             <input id="name" class="form-control" placeholder="Enter name">
@@ -37,39 +33,59 @@
             <label for="status">Martial status</label>
             <input class="form-control" id="status">
         </div>
-        
+
         <!-- <div class="custom-file">
             <label>File Upload</label> 
             <input type="text" class="form-control" placeholder="Choose file" name="fullDisclosure">
         </div> -->
+
         <h3>Upload Your Files</h3>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
             </div>
             <div class="custom-file">
-              <input type="file" class="custom-file-input" id="importFile" aria-describedby="inputGroupFileAddon01" name="fullDisclosure">
-              <label class="custom-file-label" for="importFile">Full Disclosure File(.pdf)</label>
+                <input type="file" class="custom-file-input" id="importFile" aria-describedby="inputGroupFileAddon01"
+                    name="fullDisclosure">
+                <label class="custom-file-label" for="importFile">Full Disclosure File(.pdf)</label>
             </div>
-          </div>
+        </div>
         <button type="submit" class="btn btn-primary" onclick="return getData()">Submit</button>
-          
     </form>
 
-    
+    <!-- <script id='template-market' type="text/x-handlebars-template">
 
-
-    <!-- <script src="./jquery/dist/jquery.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
-
-    <script
-  src="https://code.jquery.com/jquery-3.5.1.js"
-  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-  crossorigin="anonymous"></script>
-
-    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" -->
-        <!-- integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"> -->
+        <div id="results">
+               <div id="bench-market">
+                   <p>{{avgMonthFee}}</p>
+                   <p>{{avgSavesFee}}</p>
+                   <p>{{avgYield}}</p>
+               </div>
     </script>
+
+    <script id='template-user' type="text/x-handlebars-template">
+        <div id="user-results">
+                   <p>{{monthFee}}</p>
+                   <p>{{savesFee}}</p>
+                   <p>{{yield}}</p>
+                   <p>{{danger}}</p>
+               </div>
+    </script>
+
+    <script id='template-offers' type="text/x-handlebars-template">
+    <div id="best-offers">
+        {{#each offers}}
+            <p>{{this.monthFee}}</p>
+            <p>{{this.savesFee}}</p>
+            <p>{{this.yield}}</p>
+            <p>{{this.danger}}</p>
+        {{/each}}
+    </div>
+    </script>
+    </div> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="manager.js"></script>
     <script src="renderer.js"></script>
     <script src="main.js"></script>

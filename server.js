@@ -12,7 +12,7 @@ const app = express()
 mongoose.connect('mongodb://localhost/PaperPatrolDB',{useNewUrlParser:true, useUnifiedTopology:true})
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
-app.use(fileUpload())
+
 
 app.use(express.static(path.join(__dirname,'dist')))
 app.use(express.static(path.join(__dirname,'node_modules')))
