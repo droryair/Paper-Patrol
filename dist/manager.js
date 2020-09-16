@@ -1,6 +1,7 @@
 class Manager {
     constructor() {}
 
+
     saveUser = async (userData) => {
         const userName = $(`#name`).val()
         await $.post(`/user/${userName}`, userData, (user => {
@@ -16,3 +17,4 @@ class Manager {
 }
 
 const manager = new Manager
+
