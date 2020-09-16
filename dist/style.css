@@ -1,0 +1,87 @@
+body {
+    text-align: center;
+    background-image: url(capture.PNG);
+    background-size: cover;
+    background-position: center;
+}
+
+h1 {
+    font-family: 'Montserrat';
+    color: #1d2d50 ;
+    margin-left: 600px;
+}
+
+h2 {
+    font-family: 'Montserrat';
+    color: #1d2d50 ;
+    font-size: medium;
+    margin-left: 600px;
+}
+
+label {
+    margin-left: 15px;
+    margin-top: 40px;
+}
+
+div.polaroid {
+    width: 550px;
+    height: 620px;
+    border-radius: 20px;
+    background-color:#d8d3cd;
+    margin-left: 600px;
+  }
+
+#form-control {
+      align-content: center;
+      justify-content: center;
+      margin-bottom: 500px;
+  }
+
+form {
+    width: 400px;
+    height: 420px;
+    background: #d8d3cd;
+    box-sizing: border-box;
+    text-align: left;
+    font-family: 'Montserrat';
+    margin-left: 70px;
+}
+
+#brand {
+    font-weight: bold;
+}
+
+.heading {
+    font-family: "Montserrat";
+    line-height: 1.5;
+    color: #30475e
+}
+
+.container-fluid {
+    padding: 7% 10%;
+}
+
+.submit-button {
+    margin: 5% 3% 3% 0;
+    color: #30475e;
+    margin-left: 130px;
+    margin-top: 50px;
+}
+
+#title .container-fluid {
+    text-align: left;
+}
+
+.custom-file-label {
+    size: 90%;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.custom-file {
+    margin-top: 10px;
+}
+
+.upload {
+    margin-top: 20px;
+}

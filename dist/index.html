@@ -5,51 +5,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <!-- <link rel="icon" href="favicon.ico"> -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Merriweather&family=Sacramento&display=swap"
+    <link rel="icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;800&family=Noto+Sans:wght@700&display=swap"
         rel="stylesheet">
-    <title>Paper-Patrol</title>
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Paper-Patrol</title>
+    <!-- Bootstrap CSS -->
 </head>
 
 <body>
-    <form action="/user" method="POST" enctype="multipart/form-data">
-        <div class="form-group">
-            <label>Name:</label>
-            <input type="text" class="form-control" placeholder="Enter name" name="name">
-            <small id="nameHelp" class="form-text text-muted">We’ll never share your info with anyone else.</small>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div col-lg-3>
+            <h1>Wellcome to <span id="brand">Paper Patrol</span></h1>
+            <h2 class="heading">Help Your Future You</h2>
         </div>
-        <div class="form-group">
-            <label>Age</label>
-            <input type="number" class="form-control" name="age">
-        </div>
-        <div class="form-group">
-            <label>Martial status</label>
-            <input class="form-control" id="status" name="maritalStatus">
-        </div>
-        <h3>Upload your file</h3>
-        <div class="form-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+    </div>
+        <div class="row">
+            <div class-sm-3>
+            <div class="polaroid" class="container-fluid">
+                <form action="/user" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>Name:</label>
+                        <input type="text" class="form-control" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label>Age:</label>
+                        <input type="number" class="form-control" name="age">
+                    </div>
+                    <div class="form-group">
+                        <label>Martial status:</label>
+                        <input class="form-control" id="status" name="maritalStatus">
+                    </div>
+                    <label class="upload">Upload your file</label>
+                    <div class="form-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="fileInput"
+                                aria-describedby="inputGroupFileAddon01" name="fullDisclosure">
+                            <label class="custom-file-label" for="validatedCustomFile">Choose file</label>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-outline-dark btn-lg submit-button"><i
+                            class="fab fa-google-play"></i> Submit </button>
+                </form>
             </div>
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" id="fileInput" aria-describedby="inputGroupFileAddon01"
-                    name="fullDisclosure">
-                <label class="custom-file-label" for="fileInput">Choose file</label>
-            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    <!--
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script> -->
+    </div>
+</div>
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
-        </script>
+    </script>
     <!-- <script src="manager.js"></script>
     <script src="renderer.js"></script>
     <script src="main.js"></script> -->
