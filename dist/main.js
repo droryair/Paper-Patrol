@@ -1,5 +1,4 @@
 
-
 const getData = function(){
     const userObject = {}
 
@@ -7,13 +6,13 @@ const getData = function(){
     userObject.password = $('#password').val()
     userObject.age = $('#age').val()
     userObject.maritalStatus = $('#status').val()
-    userObject.file = $('#file').val()
+    userObject.file = $('#path').val()
  
     console.log(userObject)
 
     manager.saveUser(userObject)
     .then(manager.getResults())
-    
+
     return false
 }
 

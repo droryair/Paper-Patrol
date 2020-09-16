@@ -7,7 +7,7 @@ const Module = function (filePath) {
     let documentId = ''
     const fullDisclosure = {}
     console.log(filePath)
-    client.fetchDocumentFromURL(parserId, filePath, { remote_id: 'test' })
+    client.uploadFileByPath(parserId, filePath, { remote_id: 'test' })
       .then(function (result) {
         documentId = result.id
       })
