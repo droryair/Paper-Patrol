@@ -1,105 +1,172 @@
 const express = require('express')
 const axios = require('axios')
-const Parser = require('body-parser')
 const Market = require('../model/Market')
 const User = require('../model/User')
-const Parse = require('../../parse-module')
-const fileUpload =require(`express-fileupload`)
+const Results = require('../model/Results')
+const fs = require('fs')
+const DefaultPension = require('../Class/DefaultPension')
+
+router = express.Router()
+    
 
 
-// const Parser = require('Module')
 
-const router = express.Router()
-router.use(fileUpload())
-router.get(`/`, (req,res) => {
-    res.sendFile(__dirname + `/index.html`)
+router.get('/getUser',function(req,res){
+    const id = req.query.id
+    User.findById({_id:id},function(err,user){
+        res.send(user)
+    })
 })
-router.use(fileUpload())
 
-
-// router.get('/insurence', function (req, res) {
-//     const insurenceApi = `https://data.gov.il/api/3/action/datastore_search?resource_id=6d47d6b5-cb08-488b-b333-f1e717b1e1bd`
+router.get('/insurence', function (req, res) {
+    const insurenceApi = `https://data.gov.il/api/3/action/datastore_search?resource_id=6d47d6b5-cb08-488b-b333-f1e717b1e1bd`
     
-//     const calcAvg = function(arr){
-//         let sum = 0
-//         arr.forEach(num=>sum+=Number(num))
-//         const avg = sum/arr.length
-//         return avg
-//     }
+    const calcAvg = function(arr){
+        let sum = 0
+        arr.forEach(num=>sum+=Number(num))
+        const avg = sum/arr.length
+        return avg
+    }
         
-//         axios.get(insurenceApi)
-//         .then(response=>{
-//             const data = response.data["result"]["records"]
+        axios.get(insurenceApi)
+        .then(response=>{
+            const data = response.data["result"]["records"]
             
-//             const yieldArr = []
-//             const monthArr = []
-//             const savesArr = []
-//             data.forEach(i=>{
-//                 yieldArr.push(i.YEAR_TO_DATE_YIELD)
-//                 monthArr.push(i.AVG_DEPOSIT_FEE)
-//                 savesArr.push(i.AVG_ANNUAL_MANAGEMENT_FEE)
-//             })
-//             // const avgResults = calcAvg(yieldArr,monthArr,saveArr)
-//             const avgYield = calcAvg(yieldArr)
-//             const avgMonthFee = calcAvg(monthArr)
-//             const avgSavesFee = calcAvg(savesArr)
+            const yieldArr = []
+            const monthArr = []
+            const savesArr = []
+            data.forEach(i=>{
+                yieldArr.push(i.YEAR_TO_DATE_YIELD)
+                monthArr.push(i.AVG_DEPOSIT_FEE)
+                savesArr.push(i.AVG_ANNUAL_MANAGEMENT_FEE)
+            })
+            const avgYield = calcAvg(yieldArr)
+            const avgMonthFee = calcAvg(monthArr)
+            const avgSavesFee = calcAvg(savesArr)
 
-//             const m = new Market({
-//                 avgMonthFee,
-//                 avgSavesFee,
-//                 avgYield,
-//             })
-//             Market.save(m)
-//             res.send(m)
-//         })
-//     .catch(err=>{
-//         res.send(err)
-//     })
-// })
+            const m = new Market({
+                avgMonthFee,
+                avgSavesFee,
+                avgYield,
+            })
+            m.save()
+            console.log("I LIVE")
+            res.send(m)
+            
+        })
+    .catch(err=>{
+        res.send(err)
+    })
+})
 
-// router.post('/user', function (req, res) {
-//     const user = req.body
-//     const file = req.files.fullDisclosure
-//     console.log(file)
+router.get('/userInfo',function(req,res){
+    const id = req.query.id
+    User.findById({_id:id}).then(user=>{
+        res.render('userInfo.ejs', {
+            name: user.name,
+            age: user.age,
+            maritalStatus: user.maritalStatus,
+            id
+        })
+    }).catch(err=>{
+        console.log(err)
+    })
+})
+
+
+router.post('/user', function (req, res) {
+    const user = req.body
+    const file = req.files.fullDisclosure
     
     
-//     const name = user.name
-//     const age = user.age
-//     const maritalStatus = user.maritalStatus
-//     file.mv("uploads/" + file.name, function (err) {
-//         if (err) {
-//             console.log(err)
-//         } else {
-//             console.log("file uploaded")
-//         }
-//     })
-//     const path = require(`../../Uploads/${file.name}`)
-//     const fullDisclosure = Parse.Module(path.path)
+    const name = user.name
+    const age = user.age
+    const maritalStatus = user.maritalStatus
+    const path = `./${file.name}`
+    let fullDisclosure
+    file.mv("./" + file.name, function (err) {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log("file uploaded")
+            // fullDisclosure = Parse.Module(path)
 
-//     // const pensionCompany = user.pensionCompany
-//     // const password = user.password
-//     const u = new User({
-//         name,
-//         age,
-//         maritalStatus,
-//         fullDisclosure
-//         // pensionCompany,
-//         // password,
-//     })
-//     u.save()
-//     console.log(u)
-//     res.redirect("/userInfo")
-// })
+            // * This will delete our PDF file *
+            try {
+                fs.unlinkSync(path)
+            }
+            catch (err) { console.log(err) }
+            // *
+
+        }
+    })
+    
 
 
-// router.get('/userInfo',function(req,res){
+    const u = new User({
+        name,
+        age,
+        maritalStatus,
+        fullDisclosure
+    })
+    u.save()
+    res.redirect(`/userInfo/?id=${u._id}`)
+    res.end()
+})
 
-//     res.render("user-info.ejs")
-// })
+
+router.get('/results/:id', function (req, res){
+    const userID = req.params.id
+    let userAge 
+    let userOffer
+    // const defaultPensionYoung = new DefaultPension ("AltshulerShaham", 1.49, 0.1)
+    // const defaultPensionOld = new DefaultPension ("MeitavDash", 2.49, 0.05)
+    const defaultPensionYoung ={name:"AltshulerShaham",monthFee:1.49,savesFee:0.1}
+    const defaultPensionOld ={name:"MeitavDash",monthFee:2.49,savesFee:0.05}
+    User.findById({userID}).then(u=> {
+        userAge = u.age
+        userOffer = u.fullDisclosure
+        if((userAge<45)&&(defaultPensionYoung.monthFee<userOffer.monthFee)){
+            res.send(`your Better offer is:${defaultPensionYoung}`)
+        }else if((userAge>45)&&(defaultPensionOld.savesFee<userOffer.savesFee)){
+            res.send(`your Better offer is:${defaultPensionOld}`)
+        }else {
+            res.send(`your offer is good enough. congratulations!`)
+        }
+    })
+    .catch(err=>{
+        res.send(err)
+    })
+
+    router.post('/finalPage',function(req,res){
+        const result = req.body.resultArray
+        console.log(result)
+        const r = new Results({
+            userPension: result[0],
+            benchmark: result[1],
+            bestOffer: result[2]
+        })
+        r.save()
+        res.redirect(`/userResult/?id=${r._id}`)
+    })
+    
+    router.get('/userResult', function (req, res) {
+        const id = req.query.id
+        Results.findById({ _id: id })
+        .then(result => {
+            console.log("resultsssss:", result)
+            res.render('finalPage.ejs', {
+                results: result
+            })
+        }).catch(err => {
+            console.log(err)
+        })
+    })
 
 
 
 
 
+})
 
 module.exports = router

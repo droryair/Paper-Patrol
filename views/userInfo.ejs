@@ -9,16 +9,32 @@
 </head>
 
 <body>
-    <div id="bench-market">
+    <div id="user-info">
         <h2>Approve your info</h2>
         <p>Name: <%= name %></p>
         <p>Age: <%= age %></p>
         <p>Marital Status: <%= maritalStatus %></p>
+        <button id = "approve" data-id=<%= id %>>Approve</button>
+        <button id = "back">Back</button>
     </div>
 
-    <button>Approve</button>
-    <button>Back</button>
 
+    <div id = "results-container">
+        <div id = "best-offer-container" ></div>
+        <div id = "user-pension-container"></div>
+        <div id = "bench-mark-container"></div>
+
+    </div>
+
+
+
+
+<!--  -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script type="text/javascript" src="/public/renderer.js"></script>
+    <script type="text/javascript" src="/public/manager.js"></script>
+    <script type="text/javascript" src="/public/main.js"></script>
 </body>
 
 </html>  

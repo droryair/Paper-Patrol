@@ -7,7 +7,7 @@ const userSchema = new Schema({
     maritalStatus:String,
     // pensionCompany,
     // password,
-    // fullDisclosure:{monthFee,savesFee,yield,dangerLvl}
+    fullDisclosure:{}
 })
 const User = mongoose.model("User", userSchema)
 module.exports = User
