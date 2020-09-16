@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="icon" href="favicon.ico"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Merriweather&family=Sacramento&display=swap" rel="stylesheet">
+    <title>Disclosure</title>
+</head>
+<body>
+    <div id="results">
+        <div id="bench-market">
+            <h2>Market info:</h2>
+            <p>Average Month Fee: <%=avgMonthFee%></p>
+            <p>Average Saves Fee: <%=avgSavesFee%></p>
+            <p>Average Yield: <%=avgYield%></p>
+        </div>
+
+        <div id="user-results">
+            <h2>Your Results:</h2>
+            <p>Month Fee: <%=monthFee%></p>
+            <p>Saves Fee: <%=savesFee%></p>
+            <p>Yield: <%=yield%></p>
+            <p>Danger: <%=danger%></p>
+        </div>
+
+        <div id="best-offers">
+            <h2>Best 3 Offers:</h2>
+            <% for(let i=0; i<offers.length; i++){ %>
+                <p><%=offers[i].monthFee%></p>
+                <p><%=offers[i].savesFee%></p>
+                <p><%=offers[i].yield%></p>
+                <p><%=offers[i].danger%></p>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>
