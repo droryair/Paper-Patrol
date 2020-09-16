@@ -25,9 +25,9 @@ label {
 
 div.polaroid {
     width: 550px;
-    height: 650px;
+    height: 620px;
     border-radius: 20px;
-    background-color:#faf3dd;
+    background-color:#d8d3cd;
     margin-left: 600px;
   }
 
@@ -40,15 +40,11 @@ div.polaroid {
 form {
     width: 400px;
     height: 420px;
-    background: #faf3dd;
-    top: 50%;
-    left: 50%;
-    transform: translate3d(-50%, -50%);
+    background: #d8d3cd;
     box-sizing: border-box;
     text-align: left;
     font-family: 'Montserrat';
     margin-left: 70px;
-    margin-top: 50px;
 }
 
 #brand {
@@ -66,14 +62,13 @@ form {
 }
 
 .submit-button {
-    margin: 5% 3% 5% 0;
+    margin: 5% 3% 3% 0;
     color: #30475e;
-    margin-left: 120px;
+    margin-left: 130px;
     margin-top: 50px;
 }
 
 #title .container-fluid {
-    /* padding: 3% 15% 7%; */
     text-align: left;
 }
 
