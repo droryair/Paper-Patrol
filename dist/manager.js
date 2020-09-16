@@ -8,7 +8,7 @@ class ResultManager {
         const user = await $.get(`/getUser/?id=${id}`)
         const i = await $.get(`/insurence`)
         const r = await $.get(`/results/${id}`)
-
+        console.log(r)
         // this.result.push(user.fullDisclosure)
         this.result.push({monthFee:1,savesFee:1,dangerLvl:"low"})
         this.result.push(i)

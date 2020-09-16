@@ -50,7 +50,6 @@ router.get('/insurence', function (req, res) {
                 avgYield,
             })
             m.save()
-            console.log("I LIVE")
             res.send(m)
             
         })
@@ -126,6 +125,7 @@ router.get('/results/:id', function (req, res){
     User.findById({userID}).then(u=> {
         userAge = u.age
         userOffer = u.fullDisclosure
+        console.log(userOffer)
         if((userAge<45)&&(defaultPensionYoung.monthFee<userOffer.monthFee)){
             res.send(`your Better offer is:${defaultPensionYoung}`)
         }else if((userAge>45)&&(defaultPensionOld.savesFee<userOffer.savesFee)){
@@ -140,7 +140,6 @@ router.get('/results/:id', function (req, res){
 
     router.post('/finalPage',function(req,res){
         const result = req.body.resultArray
-        console.log(result)
         const r = new Results({
             userPension: result[0],
             benchmark: result[1],
@@ -154,7 +153,6 @@ router.get('/results/:id', function (req, res){
         const id = req.query.id
         Results.findById({ _id: id })
         .then(result => {
-            console.log("resultsssss:", result)
             res.render('finalPage.ejs', {
                 results: result
             })
