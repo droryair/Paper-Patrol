@@ -1,27 +1,14 @@
-  // router.get('/',function(req,res){
-    //     res.sendFile(__dirname+'/index.html')
-    // })// ללוטן יש תחושה שזה צריך להיות בנפרד, אבל נראה
 
-    // router.post('/',function(req,res){
+// router.post('/parser', function (req, res) {
+//     const path = req.body
+//     // console.log("path!",path)
+//     // Module.func(path)
+//     // console.log(Module)
 
-    //     if(req.files){
-    //         console.log(req.files)
-    //         const file = req.files.filename
-    //         const fileName = file.name
-    //         console.log(fileName)
-
-            // file.mv('./uploads/'+fileName,function(err){
-            //     if(err){
-
-            //         res.send(err)
-            //     }else{
-            //         res.send("file Uploaded")
-            //     }
-            // })
-    //     }
-    // })
-
-
-
-
-    // app.use(upload())
+//     // const path = 'C:\Users\97252\OneDrive\שולחן העבודה'
+//     const result = Module.Module(path.path)
+//         // console.log(result)
+//         res.send(result)
+    
+//     // res.send(Module)
+// })

@@ -7,7 +7,7 @@ const userSchema = new Schema({
     password: String,
     pensionCompany: String,
     maritalStatus: String,
-    fullDisclosure:{}
+    fullDisclosure:{},
     // monthFee: Number,
     // savesFee: Number,
     // yield: Number,

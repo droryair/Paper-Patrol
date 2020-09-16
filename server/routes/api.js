@@ -3,7 +3,7 @@ const axios = require('axios')
 // const Parser = require('body-parser')
 const Market = require('../model/Market')
 const User = require('../model/User')
-const Module = require('../../parse-module')
+const Parse = require('../../parse-module')
 const fileUpload =require(`express-fileupload`)
 
 // const Parser = require('Module')
@@ -59,7 +59,7 @@ router.get('/insurence', function (req, res) {
                 avgSavesFee,
                 avgYield,
             })
-            //Market.save(m)
+            Market.save(m)
             res.send(m)
         })
     .catch(err=>{
@@ -67,65 +67,54 @@ router.get('/insurence', function (req, res) {
     })
 })
 
-router.post('/user/:userName',function(req,res){
+router.post('/user',function(req,res){
     console.log("hello")
-    console.log(req.files.fullDisclosure)
     const user = req.body
-    const fullDisclosure = req.files
-    fullDisclosure.mv("../../uploads/" + fullDisclosure.name, function(err){
-        if(err){
-            console.log(err)
-        } else{
-            console.log("File uploaded")
-        }
-    })
+
+    // const fullDisclosure = req.files
+    // fullDisclosure.mv("../../uploads/" + fullDisclosure.name, function(err){
+    //     if(err){
+    //         console.log(err)
+    //     } else{
+    //         console.log("File uploaded")
+    //     }
+    // })
+    
+    const path  = user.path
+    const fielInfo = Parse.Module(path.path)
     
     const name = user.name
-
     User.exists({ name }, function (err, result) {
         if (result) {
             res.send("This user already exists")
         } else {
             const age = user.age
             const password = user.password
-            // const pensionCompany = user.pensionCompany,
-            // const maritalStatus = user.maritalStatus,
-            // const monthFee = user.monthFee,
-            // const savesFee = user.savesFee,
-            // const yield = user.yield
-            // // const dangerLvl = user.dangerLvl
+            const pensionCompany = user.pensionCompany,
+            const maritalStatus = user.maritalStatus,
+            const monthFee = fileInfo.monthFee,
+            const savesFee = fileInfo.savesFee,
+            const yield = fileInfo.yieldFee
+            const dangerLvl = fileInfo.dangerLvl
             const u = new User({
                 name,
                 age,
                 password,
-                // pensionCompany,
-                // maritalStatus,
-                // fullDisclosure:{monthFee,savesFee,yield,dangerLvl}
+                pensionCompany,
+                maritalStatus,
+                fullDisclosure:{monthFee,savesFee,yield,dangerLvl}
                 // monthFee,
                 // savesFee,
                 // yield,
                 // dangerLvl
             })
-                // u.save()
-                console.log(u)
+                u.save()
+                res.send(u) //*send best 3 offers
             }
         })
         res.send("Wowee! new user!")
 })
 
-router.post('/parser', function (req, res) {
-    const path = req.body
-    // console.log("path!",path)
-    // Module.func(path)
-    // console.log(Module)
-
-    // const path = 'C:\Users\97252\OneDrive\שולחן העבודה'
-    const result = Module.Module(path.path)
-        // console.log(result)
-        res.send(result)
-    
-    // res.send(Module)
-})
 
 
 
