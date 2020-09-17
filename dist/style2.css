@@ -1,0 +1,60 @@
+body {
+    text-align: center;
+    background-image: url(capture.PNG);
+    background-size: cover;
+    background-position: center;
+}
+
+p.user {
+    text-align: left;
+    font-size: 18px;
+    font-family: "Montserrat";
+}
+
+p.final {
+    text-align: left;
+    font-size: 12px;
+    font-family: "Montserrat";
+    margin-left: 20px;
+    margin-top: 10px;
+    font-size: 0.9vw;
+}
+
+span {
+    font-size: 15px;
+}
+
+h2 {
+    font-family: "Montserrat";
+}
+
+h5 {
+    text-align: center;
+}
+
+button {
+    margin-top: 40px;
+    margin-right: 15px;
+}
+
+div.polaroid {
+    width: 400px;
+    height: 490px;
+    border-radius: 15px;
+    background-color:#d8d3cd;
+    margin-left: 700px;
+    margin-top: 70px;
+    position: relative;
+    box-shadow: 5px 5px darkslategray;
+    
+  }
+
+#main-container {
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -25px 0 0 -25px;
+    text-align: center;
+}  
+
