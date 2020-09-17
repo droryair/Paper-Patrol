@@ -18,6 +18,7 @@ class ResultManager {
 
     async finalPage(resultArray){
       const html = await $.post('/finalPage',resultArray)
+      console.log(html)
        $('body').append(html)
     }
 }

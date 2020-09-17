@@ -6,10 +6,7 @@ const Results = require('../model/Results')
 const fs = require('fs')
 const DefaultPension = require('../Class/DefaultPension')
 
-router = express.Router()
-    
-
-
+router = express.Router()  
 
 router.get('/getUser',function(req,res){
     const id = req.query.id

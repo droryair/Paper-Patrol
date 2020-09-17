@@ -2,39 +2,45 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="style.css">
-    <!-- <link rel="icon" href="favicon.ico"> -->
-    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Merriweather&family=Sacramento&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/public/style2.css">
+    <link rel="icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;800&family=Noto+Sans:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Paper-Patrol</title>
     <title>Results</title>
 </head>
 
 <body>
-    <div id="user-info">
-        <h2>Approve your info</h2>
-        <p>Name: <%= name %></p>
-        <p>Age: <%= age %></p>
-        <p>Marital Status: <%= maritalStatus %></p>
-        <button id = "approve" data-id=<%= id %>>Approve</button>
-        <button id = "back">Back</button>
+    <div class="polaroid" class="container-fluid">
+        <div id="main-container">
+            <h2>Approve your info</h2>
+            <p class="user">Name: <%= name %></p>
+            <p class="user">Age: <%= age %></p>
+            <p class="user">Marital Status: <%= maritalStatus %></p>
+            <button id="approve" class="btn btn-outline-dark btn-lg submit-button" data-id=<%= id %>>Approve</button>
+        </div>
+        
     </div>
 
 
-    <div id = "results-container">
-        <div id = "best-offer-container" ></div>
-        <div id = "user-pension-container"></div>
-        <div id = "bench-mark-container"></div>
+    <div id="results-container">
+        <div id="best-offer-container"></div>
+        <div id="user-pension-container"></div>
+        <div id="bench-mark-container"></div>
 
     </div>
 
-
-
-
-<!--  -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
+    <script src="../node_modules/bootstrap/dist/css/" type="text/script"></script>
     <script type="text/javascript" src="/public/renderer.js"></script>
     <script type="text/javascript" src="/public/manager.js"></script>
     <script type="text/javascript" src="/public/main.js"></script>
 </body>
 
-</html>  
+</html>

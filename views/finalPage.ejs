@@ -1,37 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+<div class="polaroid" class="container-fluid">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FinalPage</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FinalPage</title>
+    </head>
 
-<body>
-    <h1>BIG HEADDER</h1>
-    <div><h1>You Pension Information:</h1>
-        <p>Your Monthly Fee: <%=userPension.monthFee%></p>
-        <p>Your Saves Fee: <%=userPension.savesFee%></p>
-        <p>Your Preffered Danger Level Fee:<%=userPension.dangerLvl%></p>
-    </div>
-    
-    <div><h1>Benchmark:</h1>
-            <p>Market Avarage Monthly Fee: <%=benchmark.avgMonthFee%></p>
-            <p>Market Avarage Saves Fee: <%=benchmark.avgSavesFee%></p>
-            <p>Market Avarage Yield Fee: <%=benchmark.avgYield%></p>
+    <body>
+        <div id="container-final">
+            <h5>You Pension Information:</h5>
+            <p class="final"> <span>Your Monthly Fee:</span>  <%=userPension.monthFee%></p>
+            <p class="final"> <span>Your Saves Fee:</span>  <%=userPension.savesFee%></p>
+            <p class="final"> <span>Your Danger Level Fee:</span>  <%=userPension.dangerLvl%></p>
+        
+
+        <div>
+            <h5>Benchmark:</h5>
+                <p class="final"> <span>Market Avarage Monthly Fee:</span> <%=benchmark.avgMonthFee%></p>
+                <p class="final"> <span>Market Avarage Saves Fee:</span> <%=benchmark.avgSavesFee%></p>
+                <p class="final"> <span>Market Avarage Yield Fee:</span> <%=benchmark.avgYield%></p>
         </div>
 
-        <div>This Is The Best Offer For You
-            <p>Company Name: <%=bestOffer.stringValue%></p>
-            <p>Monthly Fee: <%=bestOffer.stringValue%></p>
-            <p>Saves Fee: <%=bestOffer.stringValue%></p>
+        <div>
+            <h5>This Is The Best Offer For You</h5>
+            <p class="final"> <span>Company Name:</span> <%=bestOffer.stringValue%></p>
+            <p class="final"> <span>Monthly Fee:</span> <%=bestOffer.stringValue%></p>
+            <p class="final"> <span>Saves Fee:</span> <%=bestOffer.stringValue%></p>
         </div>
-    
-
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+</div>
+</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"
+    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 <script type="text/javascript" src="/public/renderer.js"></script>
 <script type="text/javascript" src="/public/manager.js"></script>
 <script type="text/javascript" src="/public/main.js"></script>
 </body>
+
 </html>
