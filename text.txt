@@ -1,0 +1,18 @@
+    <div><h1>You Pension Information:</h1>
+        <p>Your Monthly Fee: <%=results.userPension.monthFee%></p>
+        <p>Your Saves Fee: <%=results.userPension.savesFee%></p>
+        <p>Your Preffered Danger Level Fee:<%=results.userPension.dangerLvl%></p>
+    </div>
+    
+    <div><h1>Benchmark:</h1>
+            <p>Market Avarage Monthly Fee: <%=results.benchmark.avgMonthFee%></p>
+            <p>Market Avarage Saves Fee: <%=results.benchmark.avgSavesFee%></p>
+            <p>Market Avarage Yield Fee: <%=results.benchmark.avgYield%></p>
+        </div>
+
+        <div>This Is The Best Offer For You
+            <p>Company Name: <%=results.bestOffer.stringValue%></p>
+            <p>Monthly Fee: <%=results.bestOffer.stringValue%></p>
+            <p>Saves Fee: <%=results.bestOffer.stringValue%></p>
+        </div>
+    

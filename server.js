@@ -14,8 +14,9 @@ app.use(bodyParser.urlencoded({extended:true}))
 
 app.use(express.static(path.join(__dirname,'dist')))
 app.use(express.static(path.join(__dirname,'node_modules')))
-
+// app.use(express.static(path.join(__dirname,'views')))
 app.use('/public',express.static(path.join(__dirname,'dist')))
+
 app.set('view engine','ejs')
 
 

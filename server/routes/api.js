@@ -18,6 +18,31 @@ router.get('/getUser',function(req,res){
     })
 })
 
+router.post('/finalPage',function(req,res){
+    const result = req.body
+    console.log(result)
+    const r = new Results({
+        userPension: result["userPension"],
+        benchmark: result["benchmark"],
+        bestOffer: result["bestOffer"]
+    })
+    r.save()
+    res.redirect(`/userResult/?id=${r._id}`)
+})
+router.get('/userResult', function (req, res) {
+    const id = req.query.id
+    Results.findById({ _id: id })
+    .then(results => {
+        res.render('finalPage.ejs',results,function(err, html) {
+            res.send(html);
+        })
+
+//,results
+    }).catch(err => {
+        console.log(err)
+    })
+})
+
 router.get('/insurence', function (req, res) {
     const insurenceApi = `https://data.gov.il/api/3/action/datastore_search?resource_id=6d47d6b5-cb08-488b-b333-f1e717b1e1bd`
     
@@ -60,7 +85,8 @@ router.get('/insurence', function (req, res) {
 
 router.get('/userInfo',function(req,res){
     const id = req.query.id
-    User.findById({_id:id}).then(user=>{
+    User.findById({_id:id})
+    .then(user=>{
         res.render('userInfo.ejs', {
             name: user.name,
             age: user.age,
@@ -125,7 +151,6 @@ router.get('/results/:id', function (req, res){
     User.findById({userID}).then(u=> {
         userAge = u.age
         userOffer = u.fullDisclosure
-        console.log(userOffer)
         if((userAge<45)&&(defaultPensionYoung.monthFee<userOffer.monthFee)){
             res.send(`your Better offer is:${defaultPensionYoung}`)
         }else if((userAge>45)&&(defaultPensionOld.savesFee<userOffer.savesFee)){
@@ -138,32 +163,8 @@ router.get('/results/:id', function (req, res){
         res.send(err)
     })
 
-    router.post('/finalPage',function(req,res){
-        const result = req.body.resultArray
-        const r = new Results({
-            userPension: result[0],
-            benchmark: result[1],
-            bestOffer: result[2]
-        })
-        r.save()
-        res.redirect(`/userResult/?id=${r._id}`)
-    })
+
     
-    router.get('/userResult', function (req, res) {
-        const id = req.query.id
-        Results.findById({ _id: id })
-        .then(result => {
-            res.render('finalPage.ejs', {
-                results: result
-            })
-        }).catch(err => {
-            console.log(err)
-        })
-    })
-
-
-
-
 
 })
 
